@@ -34,7 +34,6 @@ CREATE TABLE champion_masteries(
 
 CREATE TABLE matches (
     id int NOT NULL,
-    league char(63),
 
     side char(5),
     top_id char(63) NOT NULL REFERENCES summoners(id),    
