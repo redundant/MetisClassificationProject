@@ -86,7 +86,7 @@ def get_match_data(match_id, region="NA"):
 
     entry["top_champ"] = [top.champion.id]
     entry["jun_champ"] = [jun.champion.id] 
-    entry["mid_champ"] = [m]id.champion.id]
+    entry["mid_champ"] = [mid.champion.id]
     entry["adc_champ"] = [adc.champion.id]
     entry["sup_champ"] = [sup.champion.id]
 
@@ -207,7 +207,7 @@ def get_user_role_stats(summoner):
     entry["sup_wins"] = [sup_wins]
 
     entry["top_losses"] = [top_total - top_wins]
-    entry["jun_losses"] = [j]un_total - jun_wins]   
+    entry["jun_losses"] = [jun_total - jun_wins]   
     entry["mid_losses"] = [mid_total - mid_wins]
     entry["adc_losses"] = [adc_total - adc_wins]
     entry["sup_losses"] = [sup_total - sup_wins]
