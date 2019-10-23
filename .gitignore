@@ -1,2 +1,3 @@
 *.ipynb
+*.txt
 utils/__pycache__

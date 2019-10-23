@@ -61,64 +61,11 @@ def get_match_data(match_id, region="NA"):
 
     players = team.participants
 
-    for player in players:
-        if player.lane ==  cass.data.Lane.top_lane:
-            top = player
-        
-        if player.lane == cass.data.Lane.jungle:
-            jun = player
-
-        if player.lane == cass.data.Lane.mid_lane:
-            mid = player
-
-        if player.lane == cass.data.Lane.bot_lane:
-            if player.role == cass.data.Role.duo_carry:
-                adc = player
-            
-            if player.role == cass.data.Role.duo_support:
-                sup = player
-
-    entry["top_id"] = [top.summoner.account_id]
-    entry["jun_id"] = [jun.summoner.account_id]
-    entry["mid_id"] = [mid.summoner.account_id]
-    entry["adc_id"] = [adc.summoner.account_id]
-    entry["sup_id"] = [sup.summoner.account_id]
-
-    entry["top_champ"] = [top.champion.id]
-    entry["jun_champ"] = [jun.champion.id] 
-    entry["mid_champ"] = [mid.champion.id]
-    entry["adc_champ"] = [adc.champion.id]
-    entry["sup_champ"] = [sup.champion.id]
-
-    entry["top_vs"] = [top.stats.vision_score]
-    entry["jun_vs"] = [jun.stats.vision_score]
-    entry["mid_vs"] = [mid.stats.vision_score]
-    entry["adc_vs"] = [adc.stats.vision_score]
-    entry["sup_vs"] = [sup.stats.vision_score]
-    
-    entry["top_cs_10"] = [top.timeline.cs_diff_per_min_deltas["0-10"]]
-    entry["jun_cs_10"] = [jun.timeline.cs_diff_per_min_deltas["0-10"]]
-    entry["mid_cs_10"] = [mid.timeline.cs_diff_per_min_deltas["0-10"]]
-    entry["adc_cs_10"] = [adc.timeline.cs_diff_per_min_deltas["0-10"]]
-    entry["sup_cs_10"] = [sup.timeline.cs_diff_per_min_deltas["0-10"]]
-
-    entry["top_cs_20"] = [top.timeline.cs_diff_per_min_deltas["10-20"]]
-    entry["jun_cs_20"] = [jun.timeline.cs_diff_per_min_deltas["10-20"]]
-    entry["mid_cs_20"] = [mid.timeline.cs_diff_per_min_deltas["10-20"]]
-    entry["adc_cs_20"] = [adc.timeline.cs_diff_per_min_deltas["10-20"]]
-    entry["sup_cs_20"] = [sup.timeline.cs_diff_per_min_deltas["10-20"]]
-
-    entry["top_xp_10"] = [top.timeline.xp_diff_per_min_deltas["0-10"]]
-    entry["jun_xp_10"] = [jun.timeline.xp_diff_per_min_deltas["0-10"]]
-    entry["mid_xp_10"] = [mid.timeline.xp_diff_per_min_deltas["0-10"]]
-    entry["adc_xp_10"] = [adc.timeline.xp_diff_per_min_deltas["0-10"]]
-    entry["sup_xp_10"] = [sup.timeline.xp_diff_per_min_deltas["0-10"]]
-
-    entry["top_xp_20"] = [top.timeline.xp_diff_per_min_deltas["10-20"]]
-    entry["jun_xp_20"] = [jun.timeline.xp_diff_per_min_deltas["10-20"]]
-    entry["mid_xp_20"] = [mid.timeline.xp_diff_per_min_deltas["10-20"]]
-    entry["adc_xp_20"] = [adc.timeline.xp_diff_per_min_deltas["10-20"]]
-    entry["sup_xp_20"] = [sup.timeline.xp_diff_per_min_deltas["10-20"]]
+    for num, player in enumerate(players):
+        entry["player"+str(num)+"_id"] = [player.summoner.account_id]
+        entry["player"+str(num)+"_role"] = [str(player.lane)+" "+str(player.role)]
+        entry["player"+str(num)+"_champ"] = [player.champion.id]
+        entry["player"+str(num)+"_vs"] = [player.stats.vision_score]
 
     entry["first_brick"] = [team.first_tower]
     entry["first_blood"] = [team.first_blood]
@@ -136,11 +83,12 @@ def get_match_data(match_id, region="NA"):
 
     return entry
 
-def get_user_role_stats(summoner):
+def get_user_role_stats(summoner, games):
     """For the given userid, get ranked role distribution and winrates
 
     Keyword arguments:
     summoner -- a cass summoner object
+    games -- number of games to query
 
     Returns:
     A dictionary of:
@@ -167,7 +115,7 @@ def get_user_role_stats(summoner):
     # Get only games from this season. 
     ranked_hist = cass.MatchHistory(summoner=summoner, queues = {cass.Queue.ranked_solo_fives},begin_time=cass.Patch.from_str("9.1",region="NA").start)
 
-    for m in ranked_hist:
+    for m in ranked_hist[:games]:
         player = m.participants[summoner.name]
         
         if player.lane == cass.data.Lane.top_lane:
