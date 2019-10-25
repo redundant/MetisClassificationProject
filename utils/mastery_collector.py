@@ -1,5 +1,5 @@
 import data_collection
-import pandas as pd 
+import pandas as pd
 import cassiopeia as cass
 import os.path
 
@@ -22,26 +22,20 @@ if update:
 
 masteries = []
 
-# let's just get 200 each time, as timeouts and stuff suck
 
-sample = list(ids)[:1000]
+sample = list(ids)
 
-with open("../errors.txt","w") as out:
-    for pair in sample:
-        try:
-            summoner = cass.get_summoner(account_id = pair[0], region = "NA")
-            champion = cass.get_champion(pair[1],region="NA") 
-            masteries.append(data_collection.get_user_champion_mastery(summoner,champion))
-    
-        except:
-            out.write(str(pair))
-            out.write("\n")
+for pair in sample:
+
+    summoner = cass.get_summoner(account_id = pair[0], region = "NA")
+    champion = cass.Champion(id=pair[1],region="NA")
+    masteries.append(data_collection.get_user_champion_mastery(summoner,champion))
 
 data = pd.concat([pd.DataFrame.from_dict(mastery) for mastery in masteries])
 
 if update:
     data = pd.concat([data,previous_data])
 
-data = data.drop_duplicates()
+data = data.drop_duplicates(subset=["summoner_id","champion_id"])
 
 data.to_csv("../data/mastery.csv", index=False)

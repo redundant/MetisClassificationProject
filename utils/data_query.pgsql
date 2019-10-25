@@ -32,13 +32,15 @@ matches.first_inhib,
 matches.num_towers,
 matches.num_dragons,
 matches.num_barons,
-matches.num_inhibs
+matches.num_inhibs,
+
+matches.result
 
 FROM matches
-LEFT JOIN champion_masteries t1
+INNER JOIN champion_masteries t1
 ON matches.player0_id = t1.summoner_id
 AND matches.player0_champ = t1.champion_id
-INNER JOIN champion_masteries t2
+LEFT JOIN champion_masteries t2
 ON matches.player1_id = t2.summoner_id
 AND matches.player1_champ = t2.champion_id
 LEFT JOIN champion_masteries t3
@@ -49,5 +51,4 @@ ON matches.player3_id = t4.summoner_id
 AND matches.player3_champ = t4.champion_id
 LEFT JOIN champion_masteries  t5
 ON matches.player4_id = t5.summoner_id
-AND matches.player4_champ = t5.champion_id
-LIMIT 10;
+AND matches.player4_champ = t5.champion_id;
