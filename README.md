@@ -8,3 +8,4 @@ The data folder contains relevant generated data. This is not exactly the same a
 
 The final Random forest model is built in the jupyter notebook and was exported to be wrapped in a Flask app in the Website folder.
 
+Many thanks to the folks at [Meraki Analytics](https://cassiopeia.readthedocs.io/en/latest/) for the Cassiopeia wrapper of the Riot API!
