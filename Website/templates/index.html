@@ -1,0 +1,106 @@
+<html>
+
+    <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>A Super League Helper</title>
+    </head>
+    <style>
+    input[type=range]:after{
+    content: attr(value);
+    color: #000;
+    position: absolute;
+}
+</style>
+    <body>
+
+        <div class="col-md-8 order-md-1">
+            <p class="text-center"><font size=40>A Super League Helper</font></p>
+            <form method="POST" action="test">
+                <div class = "row">
+                    <div class="col-md-6 mb-3">
+                        <label for="top_vs">Top Lane Vision Score</label>
+                        <input type="text" class="form-control" id="top_vs" name="top_vs" placeholder="" value="0" required="">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                            <label for="top_mastery">Top Lane Mastery</label>
+                            <input type="text" class="form-control" id="top_mastery" name="top_mastery" placeholder="" value="0" required="">
+                    </div>
+                </div>
+                <div class = "row">
+                    <div class="col-md-6 mb-3">
+                        <label for="jun_vs">Jungle Vision Score</label>
+                        <input type="text" class="form-control" id="jun_vs" name="jun_vs" placeholder="" value="0" required="">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                            <label for="jun_mastery">Jungle Mastery</label>
+                            <input type="text" class="form-control" id="jun_mastery" name="jun_mastery" placeholder="" value="0" required="">
+                    </div>
+                </div>
+                
+                <div class = "row">
+                    <div class="col-md-6 mb-3">
+                        <label for="mid_vs">Mid Lane Vision Score</label>
+                        <input type="text" class="form-control" id="mid_vs" name="mid_vs" placeholder="" value="0" required="">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                            <label for="mid_mastery">Mid Lane Mastery</label>
+                            <input type="text" class="form-control" id="mid_mastery" name="mid_mastery" placeholder="" value="0" required="">
+                    </div>
+                </div>
+                
+                <div class = "row">
+                    <div class="col-md-6 mb-3">
+                        <label for="adc_vs">AD Carry Vision Score</label>
+                        <input type="text" class="form-control" id="adc_vs" name="adc_vs" placeholder="" value="0" required="">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                            <label for="adc_mastery">AD Carry Lane Mastery</label>
+                            <input type="text" class="form-control" id="adc_mastery" name="adc_mastery" placeholder="" value="0" required="">
+                    </div>
+                </div>
+                
+                <div class = "row">
+                    <div class="col-md-6 mb-3">
+                        <label for="sup_vs">Support Vision Score</label>
+                        <input type="text" class="form-control" id="sup_vs" name="sup_vs" placeholder="" value="0" required="">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                            <label for="sup_mastery">Support Mastery</label>
+                            <input type="text" class="form-control" id="sup_mastery" name="sup_mastery" placeholder="" value="0" required="">
+                    </div>
+                </div>
+                
+                
+                <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="first_blood">
+                        <label class="custom-control-label" for="first_blood">First Blood</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="first_brick">
+                        <label class="custom-control-label" for="first_brick">First Tower</label>
+                </div>
+                
+                <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="first_dragon">
+                        <label class="custom-control-label" for="first_dragon">First Dragon</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="first_herald">
+                        <label class="custom-control-label" for="first_herald">Rift Herald</label>
+                </div>
+                <button class="btn btn-primary btn-lg btn-block" type="submit" formmethod="post">Submit</button>
+            </form>
+        </div>
+        {% if message %}
+        <h2>{{message}}</h2>
+        {% endif %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+
+</html>
